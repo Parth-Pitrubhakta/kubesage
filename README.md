@@ -395,5 +395,4 @@ kubesage/
 ## License
 
 MIT — see [LICENSE](LICENSE).
-#   k u b e s a g e  
- 
+#
