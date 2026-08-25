@@ -56,7 +56,6 @@ User ──▶ FastAPI ──▶ [ 9-Layer Input Security ] ──▶ LangGraph 
 
 Every expensive LLM and database call is wrapped by a five-tier Redis cache with per-tier TTLs.
 
-<<<<<<< HEAD
 The compiled graph, rendered by LangGraph itself:
 
 ```
@@ -142,10 +141,6 @@ The compiled graph, rendered by LangGraph itself:
                                        | __end__ |                                   
                                        +---------+
 ```
-
-=======
->>>>>>> 61cf23cd2e0979ce5be0a65836af9deecc5ac2e7
-### Component map
 
 | Layer | Technology | Role |
 |---|---|---|
