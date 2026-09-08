@@ -296,7 +296,6 @@ A golden dataset of 40 labelled queries spanning documentation lookups, database
 
 | Metric | Score |
 |---|---|
-<<<<<<< HEAD
 | Retrieval precision@5 | not yet measured |
 | Answer accuracy (LLM judge) | not yet measured |
 | Intent routing accuracy | not yet measured |
@@ -305,14 +304,6 @@ A golden dataset of 40 labelled queries spanning documentation lookups, database
 | p95 latency, warm | not yet measured |
 
 Run `python -m eval.run` against a live instance to populate these. The harness writes `eval/last_run.json` and prints a summary; the numbers here should be copied from a real run rather than estimated.
-=======
-| Retrieval precision@5 | — |
-| Answer accuracy (LLM judge) | — |
-| Intent routing accuracy | — |
-| Cache hit rate (warm) | — |
-| p95 latency, cold | — |
-| p95 latency, warm | — |
->>>>>>> 61cf23cd2e0979ce5be0a65836af9deecc5ac2e7
 
 ```bash
 python -m eval.run --dataset eval/golden_set.json
@@ -325,7 +316,6 @@ Ablations comparing baseline RAG against each added technique live in [`eval/RES
 ## Testing
 
 ```bash
-<<<<<<< HEAD
 pytest                                # 65 tests
 pytest --cov=app --cov-report=term    # with coverage
 ```
@@ -337,16 +327,8 @@ Integration tests in `tests/test_graph_integration.py` run the compiled graph wi
 The bug itself: `reflect` incremented the retry counter on the first reflection, before any regeneration had occurred, so the cap fired one attempt early and only one retry ever ran. `generate_answer` now owns the counter and increments only on re-entry. The fix is verified by mutation — reintroduce the increment and `test_regeneration_bounded_at_retry_cap` fails with `expected 3 generations, got 2`.
 
 The lesson generalises: a test that mocks the component containing the bug will pass no matter how broken that component is.
-=======
-pytest                                # full suite
-pytest --cov=app --cov-report=term    # with coverage
-```
-
-Unit tests cover chunking, the RRF implementation, SQL validation, and each guardrail layer. Integration tests exercise graph traversal with mocked LLM calls, including the failure paths — Qdrant timeout, LLM rate limit, malformed SQL — since graceful degradation is the point of most of this architecture.
->>>>>>> 61cf23cd2e0979ce5be0a65836af9deecc5ac2e7
 
 ---
-
 ## Deployment
 
 GitHub Actions runs lint → test → build → push to ECR → deploy to ECS Fargate on every push to `main`. Failing tests block the deploy.
